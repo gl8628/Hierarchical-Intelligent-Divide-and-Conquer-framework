@@ -656,6 +656,8 @@ def execute_HIDC_pipeline_unsupervised(edge_file_path, comm_file_path, network_t
     
     print("\n[3/6 Calculating edge weights]")
     K, MIN_COMM_SIZE, cn_base_alpha = get_adaptive_params(network_type, len(all_nodes))
+    if len(all_nodes)<5000:
+        K, MIN_COMM_SIZE, cn_base_alpha=3,2,0
     blocks, new_all_nodes = split_data_by_connectivity(edge_df, all_nodes, node_degree_dict, K)
     num_blocks = len(blocks)
     
